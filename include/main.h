@@ -22,5 +22,6 @@ RS485 rs(SLAVE_ESC);
 PwmOut pwm[8] = {PwmOut (PWM_1), PwmOut (PWM_2), PwmOut (PWM_3), PwmOut (PWM_4), 
   PwmOut (PWM_5), PwmOut (PWM_6), PwmOut (PWM_7), PwmOut (PWM_8)};
 Thread threadpwm;
+Thread thread_isAlive;
 
 #endif

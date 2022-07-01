@@ -5,6 +5,7 @@
  ***/
 
 #include "main.h"
+#include "Utility/utility.h"
 
 void function_pwm ()
 {
@@ -38,4 +39,7 @@ int main()
 
   threadpwm.start(function_pwm);
   threadpwm.set_priority(osPriorityHigh);
+
+  thread_isAlive.start(callback(isAliveThread, &rs));
+  thread_isAlive.set_priority(osPriorityHigh);
 }
