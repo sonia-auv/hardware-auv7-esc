@@ -22,7 +22,8 @@ void function_pwm ()
       {
         data_pwm_1 = buffer_receiver_pwm[(2*i)+1];
         data_pwm_2 = buffer_receiver_pwm[2*i]*256;
-        pwm[i].pulsewidth_us(data_pwm_1+data_pwm_2 + PWM_OFFSET);
+        if(i == 3) pwm[i].pulsewidth_us(data_pwm_1+data_pwm_2);
+        else pwm[i].pulsewidth_us(data_pwm_1+data_pwm_2 + PWM_OFFSET);
       }
     }
   }
@@ -30,10 +31,18 @@ void function_pwm ()
 
 int main()
 {
-  for (uint8_t i =0; i<nb_motor; ++i)
+  for (uint8_t i = 0; i < nb_motor; ++i)
   {
-    pwm[i].period_us(period);
-    pwm[i].pulsewidth_us(neutralDuty + PWM_OFFSET);
+    if(i == 3)
+    {
+      pwm[i].period_us(periodEmax);
+      pwm[i].pulsewidth_us(neutralDuty);
+    }
+    else
+    {
+      pwm[i].period_us(period);
+      pwm[i].pulsewidth_us(neutralDuty + PWM_OFFSET);
+    }
   }
 
   threadpwm.start(function_pwm);

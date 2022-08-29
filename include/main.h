@@ -11,6 +11,7 @@
 #define neutralDuty 1500
 #define mMax 1900
 #define mMin 1100
+#define periodEmax 2000
 #define period 20000 // 20000us for Afro30A and 2000us for Emax Bullet 30A
 
 #define PWM_OFFSET 30   // This is offset is needed with the Afro30A. The neutral was at 1470us instead of 1500us.
